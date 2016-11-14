@@ -3,6 +3,7 @@ Welcome to Our Splunk Admin Course
 
 ##Currently Working on: 
 Workbook Session 1: Pages 8-11
+
 *Objective*: Become Familiar With Setting Up Apps
 *10 Mins. 
 *We'll Review Together at 3:05pm.
