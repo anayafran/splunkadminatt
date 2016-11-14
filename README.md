@@ -5,9 +5,7 @@ Welcome to Our Splunk Admin Course
 #####Workbook Session 1: Pages 13-15
 
 ***Objective***: Downloading an App and Using The CLI Splunk Interface
-
 -**7Mins**. 
-
 -We'll Review Together at 3:20pm.
 
 
