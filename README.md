@@ -4,9 +4,9 @@ Welcome to Our Splunk Admin Course
 ##Currently Working on: 
 #####Workbook Session 1: Pages 13-15
 
-*Objective*: Downloaading an App and Using The CLI Splunk Interface
-*7Mins. 
-*We'll Review Together at 3:20pm.
+***Objective***: Downloaading an App and Using The CLI Splunk Interface
+-**7Mins**. 
+-We'll Review Together at 3:20pm.
 
 
 
