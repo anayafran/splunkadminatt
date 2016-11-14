@@ -12,6 +12,12 @@ Break Time: Start back at 3:45
 
 
 
+*****Class Questions
+- When we get to the defining of Index=. Explain the differences and default options. 
+
+
+
+
 ##This is Our Class Roadmap: 
 
 If at any time you feel lost, or would like to know where we are at, Refer to this map please. 
