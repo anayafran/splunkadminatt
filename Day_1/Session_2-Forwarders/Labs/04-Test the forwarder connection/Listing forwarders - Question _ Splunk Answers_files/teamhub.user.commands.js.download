@@ -1,0 +1,249 @@
+register_command('awardRepBonus', {
+        execute: function(evt) {
+            this.dialog(evt, 'award-bonus-dialog', this.messages);
+        },
+        onSuccess: function(data) {
+            var $score_box = $('#user-reputation');
+            $score_box.css('background', 'yellow');
+            $score_box.html(data.result.newRep);
+            $score_box.animate({ backgroundColor: "transparent" }, 1000);
+        }
+});
+
+register_command('giveCustomBadge', {
+        execute: function(evt) {
+            var _this = this;
+
+            $.ajax({
+                url: _this.messages.badgesList,
+                dataType: 'json',
+                success:function(ret){
+                    if(typeof ret === 'object' && typeof ret.result !== 'undefined'){
+                        window.customBadges = typeof ret.result.badges !== 'undefined' ? ret.result.badges : null;
+
+                        _this.dialog(evt, 'give-custom-badge', null, null, {
+                            show_no: false,
+
+                            onAfterShow: function(modal){
+                                var userBadges = [];
+                                var available = modal.find('.custom-badges.available-badges').first();
+
+                                $('.custom-badges.user-badges').find('li').each(function(i,e){
+                                    userBadges.push(parseInt($(e).attr('id').replace(/[^\d]+/g,'')));
+                                });
+
+                                if(customBadges.length > 0){
+                                    for(var i in customBadges){
+                                        var b = customBadges[i];
+
+                                        if(userBadges.indexOf(b.id) === -1){
+                                            var li = jQuery('<li id="badge-'+b.id+'" />');
+                                            var imgUrl = _this.messages.imgUrl.replace(/\b0\b/g, b.id);
+                                            var img = jQuery('<img class="badge-image" src="'+imgUrl+'" alt="'+b.name+'" title="'+b.name+'" />');
+                                            var ch = jQuery('<input type="checkbox" name="availableBadges" value="'+b.id+'" />');
+                                            ch.css({
+                                                marginLeft: '2px'
+                                            });
+
+                                            li.append(img);
+                                            li.append(ch);
+                                            available.append(li);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+});
+
+register_command('resendEmailValidation', {
+    execute: function (evt) {
+        this.confirm(evt, pageContext.i18n.emailValidationPrompt, pageContext.i18n.emailValidationPromptBody);
+    },
+
+    onSuccess: function (data) {
+        commandUtils.showMessage(null, data.result.success);
+    }
+});
+
+
+register_command('suspendUser', {
+    execute: function(evt) {
+        if (this.getStatus() == 'on') {
+            this.confirm(evt, null);
+        } else {
+            this.dialog(evt, 'suspend-user-dialog', this.messages);
+        }
+
+    },
+    onSuccess: function(data) {
+        var $score_box = $('#user-reputation');
+        var $score_message = $('#reputation-message');
+        var $subheader = $('#subheader');
+        var $suspendCommand = $('#suspendCommand');
+
+        if (data.result.suspended) {
+            $subheader.addClass("suspended-user");
+            $score_box.html(this.getMessage('suspended'));
+            //$suspendCommand.html('<@trans key=".user.suspendUser.command.withdraw" />');
+            $score_message.html(data.result.reason);
+        } else {
+            if (data.result.canceled) {
+                $subheader.removeClass("suspended-user");
+                $score_box.html(data.result.reputation);
+                $score_message.html(this.getMessage('karma'));
+                //$suspendCommand.html('<@trans key=".user.suspendUser.command" />');
+            }
+        }
+
+        if (data.result.suspended || data.result.canceled) {
+            $score_box.css('background', 'yellow');
+            $score_box.animate({ backgroundColor: "transparent" }, 1000);
+            $subheader.css('background', 'yellow');
+            $subheader.animate({ backgroundColor: "transparent" }, 1000);
+        }
+
+    }
+});
+
+register_command('suspendUserAndDeletePosts', {
+    execute: function(evt) {
+        if (this.getStatus() == 'on') {
+            this.confirm(evt, null);
+        } else {
+            this.dialog(evt, 'suspend-user-dialog', this.messages);
+        }
+
+    }
+});
+
+register_command('revokeSuspension', {
+    execute: function(evt) {
+        this.confirm(evt, null);
+    }
+});
+
+register_command('revokeSuspensionAndRecoverPosts', {
+    execute: function(evt) {
+        this.confirm(evt, null);
+    }
+});
+
+register_command('makeModerator', {
+    execute: function(evt) {
+        this.confirm(evt, null);
+    },
+    onSuccess: function(data) {
+        window.location.reload();
+    }
+});
+
+register_command('makeSuperUser', {
+    execute: function(evt) {
+        this.confirm(evt, null);
+    },
+    onSuccess: function(data) {
+        window.location.reload();
+    }
+});
+
+register_command('deleteAuthMode', {
+    execute: function(evt) {
+        this.confirm(evt, null);
+    },
+    getRequestData: function() {
+        return {
+            authMode: this.element.attr('rel')
+        }
+    },
+    onSuccess: function(data) {
+        window.location.reload();
+    }
+});
+
+register_command('editUserPhoto', {
+    createDialogNodes: function() {
+        var $nodes = commandUtils.createUploadDialogNodes();
+
+        var $extra = $('<table>' +        
+                        '<tr><td><h3>' + this.getMessage('or') + '</h3></td>' +
+                            '<td rowspan="2"><img src="' + this.getMessage('gravatarUrl') + '&s=32' + '"/></td></tr>' +
+                        '<tr><td><a href="#" class="use-gravatar">' + this.getMessage('gravatar') + '</a></td></tr>');
+
+        $nodes.append($extra);
+        return $nodes;
+    },
+    
+    execute: function(evt) {
+        var parser = this;
+
+        commandUtils.showUploadDialog(evt, {
+            nodes: parser.createDialogNodes(),
+            //tpl: 'edit-topic-icon',
+            authorizeUrl: parser.getParsedUrl('authorizeUrl'),
+            onSuccess: function(trackingId, data) {
+                $.ajax({
+                    type: 'POST',
+                    url: parser.getUrl(),
+                    data: {file: data.fileId},
+                    success: function(data) {
+                        if (data.success) {
+                            $('#profile-user-avatar').attr('src', parser.getParsedUrl('user.uploaded.photo') + '?bypassCache=' + (Math.floor(Math.random()*1001)));
+                        } else {
+
+                        }
+                    },
+                    dataType: 'json'
+                })
+            },
+            previewDialogOptions: {
+                forceSquare: true
+            },
+            dialogContext: {
+                iconUrl: this.getUrl('topic.icon'),
+                beforeShow: function($dialog) {
+                    $dialog.find('.use-gravatar').click(function() {
+                        $.get(parser.getParsedUrl('resetUrl'));
+                        $('#profile-user-avatar').attr('src', parser.getMessage('gravatarUrl') + '&s=128');
+                        commandUtils.closeDialogFunction($dialog)();
+                        return false;
+                    });
+                }
+            }
+        });
+    }
+});
+
+
+register_command('expertTopic', {
+
+    onSuccess: function(data) {
+        var relation = data.result.relation;
+
+        var $moveTo;
+        var $moveFrom;
+
+        if (relation.active) {
+            $moveTo = $('#manual-expert-topics');
+            $moveFrom = $('#excluded-expert-topics');
+            this.element.attr('data-operation', 'remove');
+        } else {
+            $moveTo = $('#excluded-expert-topics');
+            $moveFrom = $('#manual-expert-topics');
+            this.element.attr('data-operation', 'add');
+        }
+
+        $moveTo.parent('.expert-topics-panel').removeClass('no-topics');
+        $moveTo.parent('.expert-topics-panel').addClass('with-topics');
+
+        $moveTo.append(this.element.parent('.expert-topic-container'));
+
+        if ($moveFrom.find('.expert-topic-container').length == 0) {
+            $moveFrom.parent('.expert-topics-panel').removeClass('with-topics');
+            $moveFrom.parent('.expert-topics-panel').addClass('no-topics');
+        }
+    }
+});

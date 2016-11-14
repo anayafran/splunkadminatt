@@ -1,0 +1,11 @@
+(function(window){'use strict';window.timing=window.timing||{getTimes:function(opts){var performance=window.performance||window.webkitPerformance||window.msPerformance||window.mozPerformance;if(performance===undefined){console.log('Unfortunately, your browser does not support the Navigation Timing API');return;}
+var timing=performance.timing;var api={};opts=opts||{};if(timing){if(opts&&!opts.simple){for(var k in timing){if(timing.hasOwnProperty(k)){}}}
+api.loadTime=timing.loadEventEnd- timing.fetchStart;api.fetchStart=timing.fetchStart;api.LoadEvent=timing.loadEventEnd;api.domReadyTime=timing.domComplete- timing.domLoading;api.readyStart=timing.fetchStart- timing.navigationStart;api.redirectTime=timing.redirectEnd- timing.redirectStart;api.appcacheTime=timing.domainLookupStart- timing.fetchStart;api.unloadEventTime=timing.unloadEventEnd- timing.unloadEventStart;api.lookupDomainTime=timing.domainLookupEnd- timing.domainLookupStart;api.connectTime=timing.connectEnd- timing.connectStart;api.requestTime=timing.responseEnd- timing.requestStart;api.initDomTreeTime=timing.domInteractive- timing.responseEnd;api.loadEventTime=timing.loadEventEnd- timing.loadEventStart;}
+return api;},printTable:function(opts){var table={};var data=this.getTimes(opts)||{};Object.keys(data).sort().forEach(function(k){table[k]={ms:data[k],s:+((data[k]/1000).toFixed(2))};});},printSimpleTable:function(){this.printTable({simple:true});}};return window.timing.printSimpleTable();})(this);beacon=function(opts){opts=opts||{};opts.url=opts.url||null;opts.vars=opts.vars||{};opts.error=opts.error||function(){};opts.success=opts.success||function(){};var varsArray=[];for(var key in opts.vars){varsArray.push(key+'='+opts.vars[key]);}
+var qString=varsArray.join('&');if(opts.url)
+{var beacon=new Image();if(beacon.onerror)
+{beacon.onerror=opts.error;}
+if(beacon.onload)
+{beacon.onload=opts.success;}
+beacon.src=opts.url+'?'+ qString;}}
+window.addEventListener('load',function(){setTimeout(function(){var Timings=timing.getTimes();Timings.TestID=SC_RumID;beacon({url:'https://rum.statuscake.com:8000/',vars:Timings,});},100);});
