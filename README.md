@@ -2,10 +2,11 @@
 Welcome to Our Splunk Admin Course
 
 ##Currently Working on: 
-#####Workbook Session 1: Pages 13-15
+Break Time: Start back at 3:45
 
+
+#####Workbook Session 1 - Break 
 ***Objective***: Downloading an App and Using The CLI Splunk Interface
-
 -**7Mins**. 
 -We'll Review Together at 3:20pm.
 
@@ -23,6 +24,15 @@ https://mm.tt/785021271?t=OrSHnp08WZ
 
 
 ### Completed Exercise /Labs
+
+#####Workbook Session 1: Pages 13-15
+***Objective***: Downloading an App and Using The CLI Splunk Interface
+
+-**7Mins**. 
+-We'll Review Together at 3:20pm.
+
+
+
 Workbook Session 1: Pages 8-11
 
 *Objective*: Become Familiar With Setting Up Apps
