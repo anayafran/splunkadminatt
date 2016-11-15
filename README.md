@@ -1,17 +1,18 @@
 # splunkadminatt
 Welcome to Our Splunk Admin Course
 
+#Break Time Meet back at 10:10
 
 ##Tuesday 	Day 2 	Splunk Admin Course 	Syllabus/Guide
-Pages: 	9-9:10	
+ 	9-9:10	
 Setup 	
-
-50-66	
-9:11-9:50	
-Session 2	
-Forwarders
+| Time | Pages:  | Content  | 
+|------|---------|----------|
+|9:11-9:50   | 50-66	  | Session 2 - Forwarders | 
+| Break   |   |   |
+|   |   |   |
 	
-Break 		
+	
 66	
 10-10:50	
 Session 3	
