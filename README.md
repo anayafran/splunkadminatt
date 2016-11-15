@@ -8,20 +8,14 @@ Welcome to Our Splunk Admin Course
 
 
 #Syllabus
-| Time     |    Content    | Pages |
-|----------|:-------------:|------:|
-|9:11-9:50 |  Session 2    | 50-66 |
-| Breatk   |               |       |
-
-	
-66	
-10-10:50	
-Session 3	
-	
-Break 		
-
-11-11:50		
-Break 		
+| Time         |    Content    | Pages |
+|--------------|:-------------:|------:|
+|9:11-9:50     |  Session 2    | 50-66 |
+| Break        |               |       |
+|10:10 - 10:50 |  Session 3    | 66    |
+| 10 min Break |               |       |
+|11-11:50      |  Session 3    | cont. |	
+| 10 min Break |               |       |	
 
 12-12:45	Session 3	
 	
