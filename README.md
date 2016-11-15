@@ -16,19 +16,17 @@ Welcome to Our Splunk Admin Course
 | 10 min Break |               |       |
 |11-11:50      |  Session 3    | cont. |	
 | 10 min Break |               |       |	
+|12-12:45      |  Session 3    | cont. |
+| Lunch        | 12:45 - 2pm   |       |	
+|02-02:50      |  Session 3    | cont. |	
+|10 min Break  |               |       |
 
-12-12:45	Session 3	
-	
-Lunch	12:45 - 2pm	
 
-2-2:50	Session 3	
-
-Break 		
-266	
 
 3-3:50	Session 3	
 	Break 		
 
+266	
 
 
 
