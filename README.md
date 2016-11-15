@@ -1,7 +1,60 @@
 # splunkadminatt
 Welcome to Our Splunk Admin Course
 
+
+##Tuesday 	Day 2 	Splunk Admin Course 	Syllabus/Guide
+Pages: 	9-9:10	Setup 	
+50-66	9:11-9:50	Session 2	Forwarders
+	Break 		
+66	10-10:50	Session 3	
+	Break 		
+	11-11:50		
+	Break 		
+	12-12:45	Session 3	
+	Lunch	12:45 - 2pm	
+	2-2:50	Session 3	
+	Break 		
+266	3-3:50	Session 3	
+	Break 		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  https://www.surveymonkey.com/r/ChkIn-Splunk-ATT-1114  
+
+
+
+
+
+
+
+
+
+
 
 
 ##Currently Working on: 
