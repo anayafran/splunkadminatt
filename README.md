@@ -5,13 +5,14 @@ Welcome to Our Splunk Admin Course
 
 ##Tuesday 	Day 2 	Splunk Admin Course 	Syllabus/Guide
  	9-9:10	
-Setup 	
-| Time | Pages:  | Content  | 
-|------|---------|----------|
-|9:11-9:50   | 50-66	  | Session 2 - Forwarders | 
-| Break   |   |   |
-|   |   |   |
-	
+
+
+#Syllabus
+| Time     |    Content    | Pages |
+|----------|:-------------:|------:|
+|9:11-9:50 |  Session 2    | 50-66 |
+| Breatk   |               |       |
+
 	
 66	
 10-10:50	
